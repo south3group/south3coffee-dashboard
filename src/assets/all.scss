@@ -1,0 +1,8 @@
+// 這個檔案用來客製 bootstrap
+
+@import 'bootstrap/scss/functions';
+
+// 這個用來客製變數
+@import './variables.scss';
+
+@import 'bootstrap/scss/bootstrap';
