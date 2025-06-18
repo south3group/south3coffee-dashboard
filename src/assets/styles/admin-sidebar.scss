@@ -27,6 +27,12 @@ $header-height: 74.75px;
       padding-left: 8px;
     }
 
+    .page-name {
+      font-weight: 700;
+      font-size: 18px;
+      color: $coffee-primary-000;
+    }
+
     .menu-custom {
       display: flex;
       flex-direction: column;
@@ -48,6 +54,17 @@ $header-height: 74.75px;
           color: white;
           background-color: rgba($coffee-deep, 0.5);
         }
+      }
+    }
+
+    .bottom-style {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+
+      .profile-style {
+        padding: 0 16px;
       }
     }
   }
@@ -79,6 +96,111 @@ $header-height: 74.75px;
       background-color: $coffee-primary-800;
       color: $coffee-primary-000;
     }
+  }
+}
+
+// 手機版選單
+.mobile-menu {
+  position: fixed;
+  top: $header-height;
+  right: 0;
+  width: 50%;
+  font-size: 1.6rem;
+  height: calc(100% - #{$header-height});
+  background-color: $coffee-grey-000;
+  z-index: 1000;
+  padding: 8px;
+  gap: 8px;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 1rem;
+      a,
+      button {
+        text-decoration: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: $coffee-primary-600;
+        background-color: $coffee-grey-000;
+        height: auto;
+        max-height: none;
+        width: 100%;
+        padding: 8px;
+        text-align: left;
+        margin-top: 8px;
+        outline: none;
+        border: none;
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+
+        &:hover {
+          background-color: $coffee-primary-300;
+          color: $coffee-primary-700;
+        }
+
+        &:active {
+          background-color: $coffee-primary-800;
+          color: $coffee-primary-000;
+        }
+      }
+    }
+  }
+}
+
+.profile-btn {
+  padding: 0 16px !important;
+
+  .mobile-profile {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: $header-height;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 990;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 4px;
+  width: auto;
+  height: 100%;
+  position: relative;
+  z-index: 1100;
+
+  span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background-color: $coffee-primary-000;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+  }
+
+  &:hover span {
+    background-color: $coffee-primary-300;
   }
 }
 
@@ -153,9 +275,7 @@ $header-height: 74.75px;
   }
 }
 
-
 .sidebar-style {
-
   .member-main {
     width: 100%;
     display: flex;
@@ -164,15 +284,6 @@ $header-height: 74.75px;
   }
   .main-content {
     width: 100%;
-    max-width: 1200px;
-  }
-
-}
-
-// 控制 body 出現 sidebar-toggle 時
-sidebar-toggle {
-  .sidebar {
-    margin-left: 0;
   }
 }
 
@@ -195,6 +306,67 @@ sidebar-toggle {
     .member-main {
       width: 100%;
       margin-left: 0;
+    }
+  }
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .logo-icon {
+    width: 27.73px;
+    height: auto;
+  }
+  .logo-text {
+    font-size: 2.4rem;
+    line-height: 150%;
+    @extend .semibold-text;
+  }
+}
+
+.nav-brand {
+  padding: 16px 8px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .logo-icon {
+    width: 27.73px;
+    height: auto;
+  }
+  .logo-text {
+    font-size: 2.4rem;
+    line-height: 150%;
+    @extend .semibold-text;
+  }
+}
+
+.navbar-menu {
+  white-space: nowrap;
+  gap: 8px;
+
+  .nav-link-custom {
+    padding: 8px 16px !important;
+    height: auto;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $coffee-primary-000;
+
+    &:hover {
+      background-color: $coffee-primary-300;
+      color: $coffee-primary-700;
+    }
+
+    &:active {
+      background-color: $coffee-primary-800;
+      color: $coffee-primary-000;
     }
   }
 }

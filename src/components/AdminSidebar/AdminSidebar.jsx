@@ -13,7 +13,7 @@ const AdminSidebar = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [ _ , setMenuOpen] = useState(false);
+  const [_, setMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
   // useEffect(() => {
@@ -28,11 +28,11 @@ const AdminSidebar = ({ children }) => {
   // }, [isAuthChecked, token, dispatch, navigate]);
 
   const sidebarItems = [
-    { title: '會員中心', path: '/member' },
-    { title: '個人資訊', path: '/member/profile' },
-    { title: '收件資料', path: '/member/receiver' },
-    { title: '訂單資訊', path: '/member/orders' },
-    { title: '願望清單', path: '/member/wishlist' },
+    { title: '會員中心', path: '/admin' },
+    { title: '訂單管理', path: '/admin/orders' },
+    { title: '商品管理', path: '/admin/products' },
+    { title: '數據中心', path: '/admin/data_center' },
+    { title: '聆聽意見箱', path: '/admin/feedback' },
   ];
 
   // 登出
@@ -57,9 +57,9 @@ const AdminSidebar = ({ children }) => {
   }, [sidebarOpen]);
 
   return (
-    <div className="sidebar-style">
+    <div className="admin-sidebar-style">
       {/* 手機版 */}
-      <nav className="navbar d-md-none bg-coffee-primary-700 sticky-top shadow nav-brand member-navbar">
+      <nav className="navbar  d-md-none bg-coffee-primary-700 sticky-top shadow nav-brand member-navbar">
         <div className="container-fluid container-width">
           <Link to="/" className="navbar-brand nav-logo">
             <img
@@ -91,41 +91,43 @@ const AdminSidebar = ({ children }) => {
         </div>
       </nav>
       {userDropdownOpen && (
-              <>
-                <div
-                  className="member-mobile-menu-overlay"
-                  onClick={() => setUserDropdownOpen(false)}
-                ></div>
+        <>
+          <div
+            className="member-mobile-menu-overlay"
+            onClick={() => setUserDropdownOpen(false)}
+          ></div>
 
-                {/* 使用者選單 */}
-                <div className={`member-mobile-menu d-md-none ${userDropdownOpen ? 'open' : ''}`}>
-                  <ul className="px-0">
-                    {sidebarItems.map((item, i) => (
-                      <li key={i}>
-                        <Link
-                          to={item.path}
-                          className="dropdown-item"
-                          onClick={() => setUserDropdownOpen(false)}
-                        >
-                          {item.title}
-                        </Link>
-                      </li>
-                    ))}
-                    <li>
-                      <button
-                        onClick={() => {
-                          handleLogout();
-                          setUserDropdownOpen(false);
-                        }}
-                        className="dropdown-item"
-                      >
-                        登出
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              </>
-            )}
+          {/* 使用者選單 */}
+          <div
+            className={`member-mobile-menu d-md-none ${userDropdownOpen ? 'open' : ''}`}
+          >
+            <ul className="px-0">
+              {sidebarItems.map((item, i) => (
+                <li key={i}>
+                  <Link
+                    to={item.path}
+                    className="dropdown-item"
+                    onClick={() => setUserDropdownOpen(false)}
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setUserDropdownOpen(false);
+                  }}
+                  className="dropdown-item"
+                >
+                  登出
+                </button>
+              </li>
+            </ul>
+          </div>
+        </>
+      )}
 
       {/* 桌電版 */}
       <div className=" d-flex min-vh-100">
@@ -143,8 +145,10 @@ const AdminSidebar = ({ children }) => {
               <img src={images.scale} alt="scale button" />
             </button>
           </div>
-          {/* LOGO + profile */}
+
+          {/* 內容 */}
           <div className="sidebar-detail-custom">
+            {/* LOGO */}
             <strong>
               <Link
                 to="/"
@@ -160,12 +164,9 @@ const AdminSidebar = ({ children }) => {
                 </span>
               </Link>
             </strong>
-            <div className="d-flex flex-column flex-md-row align-items-center ">
-              <img src={images.profile} alt="profile photo" />
-              <span className="m-0 text-coffee-primary-000 span-custom">
-                {username || '使用者'}
-              </span>
-            </div>
+
+            <p className="page-name m-0">後臺管理中心</p>
+
             {/* 選單 */}
             <div className="overflow-auto">
               <div className="menu-custom">
@@ -181,8 +182,16 @@ const AdminSidebar = ({ children }) => {
               </div>
             </div>
 
-            {/* 登出 */}
-            <div className="mt-auto">
+            <div className="bottom-style mt-auto">
+              {/* profile */}
+              <div className="d-flex flex-column flex-md-row align-items-center profile-style">
+                <img src={images.profile} alt="profile photo" />
+                <span className="m-0 text-coffee-primary-000 span-custom">
+                  {username || '使用者'}
+                </span>
+              </div>
+
+              {/* 登出 */}
               <button
                 type="button"
                 className="sidebar-logout border border-primary-300 text-center text-decoration-none"
