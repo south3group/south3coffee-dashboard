@@ -1,0 +1,54 @@
+.chart-box {
+  border: 1px solid #f4e9e2;
+  background-color: #fff;
+  border: 1px solid $coffee-primary-100;
+  background-color: $coffee-grey-000;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow: visible;
+}
+
+.chart-title {
+  font-size: 2rem;
+  font-weight: 700;
+  font-weight: 700;
+  color: $coffee-primary-900;
+  padding-bottom: 24px;
+  margin: 0;
+}
+
+.recharts-cartesian-axis-tick text {
+  font-size: 1.2rem;
+  fill: #68482d;
+  font-weight: 400;
+}
+
+.custom-legend {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin-top: 16px;
+  gap: 8px;
+  @media (min-width: 768px) {
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    color: $coffee-primary-700;
+  }
+
+  .legend-color {
+    width: 12px;
+    height: 12px;
+    margin-right: 6px;
+    border-radius: 50%;
+  }
+}
+

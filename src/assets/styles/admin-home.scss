@@ -1,0 +1,278 @@
+.admin-home-style {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 16px;
+  width: 100%;
+  min-height: 100vh;
+  background-color: $coffee-bg-light;
+
+  @media (min-width: 768px) {
+    padding: 40px;
+  }
+
+  // 出貨 & 營業額
+  .sales-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      gap: 24px;
+    }
+
+    &-box {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid $coffee-primary-200;
+      background-color: $coffee-grey-000;
+      color: $coffee-primary-700;
+      padding: 16px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+
+      @media (min-width: 768px) {
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        padding: 24px 40px;
+      }
+
+      &-title {
+        font-size: 1.6rem;
+        line-height: 150%;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      &-text {
+        line-height: 120%;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        font-size: 3rem;
+        font-weight: 900;
+        margin: 0;
+        align-items: center;
+
+        @media (min-width: 768px) {
+          align-items: flex-end;
+        }
+
+        &-currency {
+          font-size: 1.8rem;
+          font-weight: 400;
+          margin: 0;
+          line-height: 150%;
+          @media (min-width: 768px) {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+
+  //   小標題
+  .admin-home-title {
+    font-size: 2.4rem;
+    color: $coffee-primary-900;
+    font-weight: 900;
+    line-height: 120%;
+  }
+
+  // 最新訂單
+  .new-orders {
+    .orders-custom-mobile {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid $coffee-primary-100;
+      // 手機版
+      .order-card {
+        width: 100%;
+        padding: 16px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        background-color: $coffee-grey-000;
+        border-bottom: 1px solid $coffee-primary-100;
+
+        .text-group {
+          display: flex;
+          gap: 12px;
+          flex-direction: column;
+
+          .orders-num {
+            margin: 0;
+            color: $coffee-primary-600;
+            line-height: 150%;
+            letter-spacing: 0;
+          }
+
+          .order-info-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 8px;
+
+            .orders-num {
+              margin: 0;
+              color: $coffee-primary-600;
+              line-height: 150%;
+              letter-spacing: 0;
+            }
+
+            .order-info-left {
+              display: flex;
+              flex-direction: row;
+              gap: 16px;
+
+              .left-title {
+                color: $coffee-primary-1000;
+                line-height: 150%;
+                letter-spacing: 0;
+                margin: 0;
+                min-width: 65px;
+              }
+            }
+
+            .left-text {
+              font-weight: 700;
+              color: $coffee-primary-700;
+              line-height: 150%;
+              letter-spacing: 2%;
+              margin: 0;
+            }
+
+            .order-info-price {
+              font-weight: 700;
+              color: $coffee-primary-700;
+              line-height: 150%;
+              letter-spacing: 2%;
+              margin: 0;
+            }
+
+            .edit-icon {
+              width: 24px;
+              height: 24px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+
+    // 桌電版
+    .orders-custom {
+      &-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 1.6rem;
+        border: 1px solid $coffee-primary-100;
+      }
+
+      &-style {
+        &-th {
+          padding: 24px 16px;
+          color: $coffee-primary-1000;
+          font-weight: 700;
+          text-align: left;
+          border-bottom: 1px solid $coffee-primary-100;
+          background-color: #f7f7f7;
+          vertical-align: middle;
+        }
+      }
+
+      &-tbody {
+        background-color: $coffee-grey-000;
+
+        &-th,
+        &-td {
+          padding: 24px 16px;
+          color: $coffee-primary-700;
+          border-bottom: 1px solid $coffee-primary-100;
+          font-weight: inherit;
+          vertical-align: middle;
+          height: 100%;
+          &-unpaid,
+          &-unshipped {
+            padding: 16px;
+            color: $coffee-notification;
+            border-bottom: 1px solid $coffee-primary-100;
+            font-weight: inherit;
+            vertical-align: middle;
+            height: 100%;
+          }
+        }
+
+        tr:last-child th,
+        tr:last-child td {
+          border-bottom: none;
+        }
+
+        .price-box {
+          display: flex;
+          flex-direction: row;
+          gap: 4px;
+        }
+      }
+    }
+
+    .col-edit {
+      white-space: nowrap;
+      text-align: center;
+      vertical-align: middle;
+
+      &-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .more-btn {
+    padding: 8px 16px;
+    gap: 12px;
+    border: 1px solid $coffee-primary-400;
+    background: none;
+    background-color: transparent;
+    display: block; // 讓 margin: auto 有效
+    margin: 0 auto; // 左右自動 → 水平置中
+    width: fit-content;
+    color: $coffee-primary-600;
+    line-height: 150%;
+
+    &:hover {
+      background-color: $coffee-primary-300;
+      border: 1px solid $coffee-primary-400;
+    }
+
+    &:active {
+      color: $coffee-primary-000;
+      background-color: $coffee-primary-800;
+      border: 1px solid $coffee-primary-400;
+    }
+  }
+
+  .chart-custom {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+}
