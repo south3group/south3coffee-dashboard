@@ -36,7 +36,7 @@ export const checkAuth = () => (dispatch) => {
   const token = localStorage.getItem('token');
   const role = localStorage.getItem('role');
   const username = localStorage.getItem('username');
-  if (token && role === 'USER') {
+  if (token && role) {
     dispatch(setCredentials({ token, role, username }));
   } else {
     dispatch(logout());
