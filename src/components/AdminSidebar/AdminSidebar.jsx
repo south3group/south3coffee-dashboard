@@ -8,7 +8,7 @@ const AdminSidebar = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const dispatch = useDispatch();
-  const { token, username, isAuthChecked } = useSelector((state) => state.auth);
+  const { token, username, isAuthChecked, role } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,11 +21,14 @@ const AdminSidebar = ({ children }) => {
   // }, [dispatch]);
 
   // useEffect(() => {
-  //   if (isAuthChecked && !token) {
-  //     dispatch(logout());
-  //     navigate('/login');
+  //   if (isAuthChecked) {
+  //     if (!token || role !== 'ADMIN') {
+  //       dispatch(logout());
+  //       window.location.href = 'https://south3group.github.io/south3coffee/login';
+  //       navigate('/login');
+  //     }
   //   }
-  // }, [isAuthChecked, token, dispatch, navigate]);
+  // }, [isAuthChecked, token, role, dispatch, navigate]);
 
   const sidebarItems = [
     { title: '會員中心', path: '/admin' },
@@ -38,7 +41,7 @@ const AdminSidebar = ({ children }) => {
   // 登出
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/login');
+    window.location.href = 'https://south3group.github.io/south3coffee/login';
   };
 
   // 控制收合
@@ -187,7 +190,7 @@ const AdminSidebar = ({ children }) => {
               <div className="d-flex flex-column flex-md-row align-items-center profile-style">
                 <img src={images.profile} alt="profile photo" />
                 <span className="m-0 text-coffee-primary-000 span-custom">
-                  {username || '使用者'}
+                  {username || 'Admin'}
                 </span>
               </div>
 
