@@ -1,3 +1,8 @@
+import {  useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { checkAuth, logout } from '../../store/authSlice';
+
 import AdminSidebar from '../../components/AdminSidebar/AdminSidebar';
 import PieChartComponent from '../../components/PieChartComponent/PieChartComponent';
 import BarChartComponent from '../../components/BarChartComponent/BarChartComponent';
@@ -5,6 +10,28 @@ import BarChartComponent from '../../components/BarChartComponent/BarChartCompon
 import { images } from '../../constants/image';
 
 const AdminHome = () => {
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const { token, isAuthChecked, role } = useSelector(
+    (state) => state.auth,
+  );
+
+  // useEffect(() => {
+  //   dispatch(checkAuth());
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   if (isAuthChecked) {
+  //     if (!token || role !== 'ADMIN') {
+  //       dispatch(logout());
+  //       window.location.href = 'https://south3group.github.io/south3coffee/login';
+  //       navigate('/login');
+
+  //     }
+  //   }
+  // }, [isAuthChecked, token, role, dispatch, navigate]);
+
   return (
     <>
       <div className="d-flex flex-column min-vh-100">
