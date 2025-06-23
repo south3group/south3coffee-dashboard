@@ -58,19 +58,19 @@ const AdminHome = () => {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(checkAuth());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (isAuthChecked) {
-  //     if (!token || role !== 'ADMIN') {
-  //       dispatch(logout());
-  //       window.location.href = 'https://south3group.github.io/south3coffee/login';
-  //       navigate('/login');
-  //     }
-  //   }
-  // }, [isAuthChecked, token, role, dispatch, navigate]);
+  useEffect(() => {
+    if (isAuthChecked) {
+      if (!token || role !== 'ADMIN') {
+        dispatch(logout());
+        // window.location.href = 'https://south3group.github.io/south3coffee/login';
+        navigate('/login');
+      }
+    }
+  }, [isAuthChecked, token, role, dispatch, navigate]);
 
   return (
     <>
