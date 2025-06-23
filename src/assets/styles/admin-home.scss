@@ -276,3 +276,23 @@
     }
   }
 }
+
+// 回到頂部
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 24px;
+  z-index: 1000;
+  background-color: $coffee-primary-800;
+  color: $coffee-primary-000;
+  border: none;
+  padding: 8px 16px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  opacity: 0.4;
+
+  &:hover {
+    opacity: 1;
+  }
+}
