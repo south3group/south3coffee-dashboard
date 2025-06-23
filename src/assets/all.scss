@@ -12,9 +12,12 @@
 
 
 //layouts(放全站共用 css 樣式:版型、固定位置、背景色等）
+@import './styles/layouts/header';
 @import './styles/admin-sidebar.scss';
 
 
 //小元件(button、card等) css 樣式
 @import './styles/admin-home.scss';
 @import './styles/chart-style.scss';
+@import './styles/auth.scss';
+@import './styles/modal-custom.scss';

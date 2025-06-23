@@ -16,19 +16,19 @@ const AdminSidebar = ({ children }) => {
   const [_, setMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
-  // useEffect(() => {
-  //   dispatch(checkAuth());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (isAuthChecked) {
-  //     if (!token || role !== 'ADMIN') {
-  //       dispatch(logout());
-  //       window.location.href = 'https://south3group.github.io/south3coffee/login';
-  //       navigate('/login');
-  //     }
-  //   }
-  // }, [isAuthChecked, token, role, dispatch, navigate]);
+  useEffect(() => {
+    if (isAuthChecked) {
+      if (!token || role !== 'ADMIN') {
+        dispatch(logout());
+        // window.location.href = 'https://south3group.github.io/south3coffee/login';
+        navigate('/login');
+      }
+    }
+  }, [isAuthChecked, token, role, dispatch, navigate]);
 
   const sidebarItems = [
     { title: '會員中心', path: '/admin' },
