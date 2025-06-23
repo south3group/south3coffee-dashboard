@@ -31,10 +31,10 @@ const Header = () => {
   return (
     <nav className="navbar navbar-expand-md bg-coffee-primary-700 sticky-top shadow nav-brand">
       <div className="container-fluid container-width">
-        <Link to="/" className="navbar-brand nav-logo">
-          <img src={images.logoIcon} alt="coffee logo" className="logo-icon" />
-          <span className="logo-text text-coffee-secondary-300">築豆咖啡</span>
-        </Link>
+      <a href="https://south3group.github.io/south3coffee/" className="navbar-brand nav-logo" target="_blank" rel="noopener noreferrer">
+  <img src={images.logoIcon} alt="coffee logo" className="logo-icon" />
+  <span className="logo-text text-coffee-secondary-300">築豆咖啡</span>
+</a>
 
         {/* 手機版 */}
         <div className="d-flex d-md-none align-items-center ms-auto gap-2 mobile-custom">
