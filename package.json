@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://south3group.github.io/south3coffee-dashboard",
+  "homepage": "https://tt3x3.github.io/south3coffee-dashboard/",
+
 
   "scripts": {
     "dev": "vite",
