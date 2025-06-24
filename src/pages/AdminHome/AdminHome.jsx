@@ -51,7 +51,7 @@ const AdminHome = () => {
 
         // 取得出貨數據
         const shipResponse = await axios.get(
-          `${baseUrl}api/v1/admin/orders/is_ship`,
+          `${baseUrl}/api/v1/admin/orders/is_ship`,
         );
         const { unshipped_count, shipped_this_month_count } =
           shipResponse.data.data;
@@ -62,14 +62,14 @@ const AdminHome = () => {
 
         // 取得營業額數據
         const revenueResponse = await axios.get(
-          `${baseUrl}api/v1/admin/orders/revenue`,
+          `${baseUrl}/api/v1/admin/orders/revenue`,
         );
         const { revenue: monthlyRevenue } = revenueResponse.data.data;
         setRevenue(monthlyRevenue);
 
         // 取得最新訂單
         const ordersResponse = await axios.get(
-          `${baseUrl}api/v1/admin/orders/new`,
+          `${baseUrl}/api/v1/admin/orders/new`,
         );
         setNewOrders(ordersResponse.data.data);
       } catch (error) {
