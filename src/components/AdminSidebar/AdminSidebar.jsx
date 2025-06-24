@@ -20,6 +20,7 @@ const AdminSidebar = ({ children }) => {
     dispatch(checkAuth());
   }, [dispatch]);
 
+
   useEffect(() => {
     if (isAuthChecked) {
       if (!token || role !== 'ADMIN') {
@@ -28,6 +29,7 @@ const AdminSidebar = ({ children }) => {
       }
     }
   }, [isAuthChecked, token, role, dispatch, navigate]);
+
 
   const sidebarItems = [
     { title: '會員中心', path: '/admin' },
@@ -40,6 +42,7 @@ const AdminSidebar = ({ children }) => {
   // 登出
   const handleLogout = () => {
     dispatch(logout());
+    // window.location.href = 'https://south3group.github.io/south3coffee/login';
     navigate('/login');
   };
 

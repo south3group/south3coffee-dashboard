@@ -5,6 +5,7 @@
   "type": "module",
   "homepage": "https://tt3x3.github.io/south3coffee-dashboard/",
 
+
   "scripts": {
     "dev": "vite",
     "build": "vite build",
