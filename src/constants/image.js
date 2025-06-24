@@ -4,6 +4,7 @@ import profileSmallImg from '../assets/images/profile_small.png';
 import scaleImg from '../assets/images/scale.png';
 import keyboardArrow from '../assets/images/keyboard_arrow.png';
 import editIcon from '../assets/images/edit_icon.png';
+import topBtn from '../assets/images/top-btn.png';
 import logoDark from '../assets/images/logo_dark.png';
 
 export const images = {
@@ -14,4 +15,5 @@ export const images = {
   scale: scaleImg,
   keyboardArrow: keyboardArrow,
   editIcon: editIcon,
+  topBtn: topBtn,
 };
