@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { checkAuth, logout } from '../../store/authSlice';
 import axios from 'axios';
 
+
 import AdminSidebar from '../../components/AdminSidebar/AdminSidebar';
 import PieChartComponent from '../../components/PieChartComponent/PieChartComponent';
 import BarChartComponent from '../../components/BarChartComponent/BarChartComponent';
@@ -50,7 +51,7 @@ const AdminHome = () => {
 
         // 取得出貨數據
         const shipResponse = await axios.get(
-          `${baseUrl}api/v1/admin/orders/is_ship`,
+          `${baseUrl}/api/v1/admin/orders/is_ship`,
         );
         const { unshipped_count, shipped_this_month_count } =
           shipResponse.data.data;
@@ -61,14 +62,14 @@ const AdminHome = () => {
 
         // 取得營業額數據
         const revenueResponse = await axios.get(
-          `${baseUrl}api/v1/admin/orders/revenue`,
+          `${baseUrl}/api/v1/admin/orders/revenue`,
         );
         const { revenue: monthlyRevenue } = revenueResponse.data.data;
         setRevenue(monthlyRevenue);
 
         // 取得最新訂單
         const ordersResponse = await axios.get(
-          `${baseUrl}api/v1/admin/orders/new`,
+          `${baseUrl}/api/v1/admin/orders/new`,
         );
         setNewOrders(ordersResponse.data.data);
       } catch (error) {
@@ -78,8 +79,59 @@ const AdminHome = () => {
       }
     };
 
-    fetchData();
-  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        // 使用環境變數作為 API 基礎 URL
+        const baseUrl = import.meta.env.VITE_API_URL;
+
+        // 設定 API 請求的 headers
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        };
+        
+        // 取得出貨數據
+        const shipResponse = await axios.get(
+          `${baseUrl}/api/v1/admin/orders/is_ship`,
+          config
+        );
+        const { unshipped_count, shipped_this_month_count } = shipResponse.data.data;
+        setShipmentData({
+          unshippedCount: unshipped_count,
+          shippedThisMonthCount: shipped_this_month_count
+        });
+
+        // 取得營業額數據
+        const revenueResponse = await axios.get(
+          `${baseUrl}/api/v1/admin/orders/revenue`,
+          config
+        );
+        const { revenue: monthlyRevenue } = revenueResponse.data.data;
+        setRevenue(monthlyRevenue);
+
+        // 取得最新訂單
+        const ordersResponse = await axios.get(
+          `${baseUrl}/api/v1/admin/orders/new`,
+          config
+        );
+        setNewOrders(ordersResponse.data.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    // 只有在有 token 時才發送請求
+    if (token) {
+      fetchData();
+    }
+  }, [token]); // 添加 token 作為依賴
 
   useEffect(() => {
     dispatch(checkAuth());
@@ -93,6 +145,7 @@ const AdminHome = () => {
       }
     }
   }, [isAuthChecked, token, role, dispatch, navigate]);
+
 
   return (
     <>
