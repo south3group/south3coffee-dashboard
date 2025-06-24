@@ -31,9 +31,20 @@ const AdminHome = () => {
         setIsLoading(true);
         // 使用環境變數作為 API 基礎 URL
         const baseUrl = import.meta.env.VITE_API_URL;
+
+        // 設定 API 請求的 headers
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        };
         
         // 取得出貨數據
-        const shipResponse = await axios.get(`${baseUrl}api/v1/admin/orders/is_ship`);
+        const shipResponse = await axios.get(
+          `${baseUrl}/api/v1/admin/orders/is_ship`,
+          config
+        );
         const { unshipped_count, shipped_this_month_count } = shipResponse.data.data;
         setShipmentData({
           unshippedCount: unshipped_count,
@@ -41,12 +52,18 @@ const AdminHome = () => {
         });
 
         // 取得營業額數據
-        const revenueResponse = await axios.get(`${baseUrl}api/v1/admin/orders/revenue`);
+        const revenueResponse = await axios.get(
+          `${baseUrl}/api/v1/admin/orders/revenue`,
+          config
+        );
         const { revenue: monthlyRevenue } = revenueResponse.data.data;
         setRevenue(monthlyRevenue);
 
         // 取得最新訂單
-        const ordersResponse = await axios.get(`${baseUrl}api/v1/admin/orders/new`);
+        const ordersResponse = await axios.get(
+          `${baseUrl}/api/v1/admin/orders/new`,
+          config
+        );
         setNewOrders(ordersResponse.data.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -55,8 +72,11 @@ const AdminHome = () => {
       }
     };
 
-    fetchData();
-  }, []);
+    // 只有在有 token 時才發送請求
+    if (token) {
+      fetchData();
+    }
+  }, [token]); // 添加 token 作為依賴
 
   // useEffect(() => {
   //   dispatch(checkAuth());
