@@ -49,44 +49,6 @@ const AdminHome = () => {
         // 使用環境變數作為 API 基礎 URL
         const baseUrl = import.meta.env.VITE_API_URL;
 
-        // 取得出貨數據
-        const shipResponse = await axios.get(
-          `${baseUrl}/api/v1/admin/orders/is_ship`,
-        );
-        const { unshipped_count, shipped_this_month_count } =
-          shipResponse.data.data;
-        setShipmentData({
-          unshippedCount: unshipped_count,
-          shippedThisMonthCount: shipped_this_month_count,
-        });
-
-        // 取得營業額數據
-        const revenueResponse = await axios.get(
-          `${baseUrl}/api/v1/admin/orders/revenue`,
-        );
-        const { revenue: monthlyRevenue } = revenueResponse.data.data;
-        setRevenue(monthlyRevenue);
-
-        // 取得最新訂單
-        const ordersResponse = await axios.get(
-          `${baseUrl}/api/v1/admin/orders/new`,
-        );
-        setNewOrders(ordersResponse.data.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        // 使用環境變數作為 API 基礎 URL
-        const baseUrl = import.meta.env.VITE_API_URL;
-
         // 設定 API 請求的 headers
         const config = {
           headers: {
@@ -103,7 +65,7 @@ const AdminHome = () => {
         const { unshipped_count, shipped_this_month_count } = shipResponse.data.data;
         setShipmentData({
           unshippedCount: unshipped_count,
-          shippedThisMonthCount: shipped_this_month_count
+          shippedThisMonthCount: shipped_this_month_count,
         });
 
         // 取得營業額數據
